@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table {
+        background-image: url('b2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 300px;
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script type="application/javascript">
+        function generateImg() {
+            // 调用后端接口生成图片
+            $.ajax({
+                    type: "GET",
+                    url: "/ai/image",
+                    data: {description: $("#mydescription").val()},
+                    success: function (data) {
+                        $("#myimg").attr("src", data);
+                    }
+                }
+            );
+        }
+    </script>
+</head>
+<body>
+<!--插入一个表格 -->
+<table border="1" width="60%" height="100%" align="center">
+    <tr>
+        <td width="20%" align="center">
+            <br><br><br>
+            <a href="answer.html">AI写作</a>
+            <br><br><br><br><br><br><br>
+
+            <font color="red" size="4"><b>AI生图</b></font>
+
+            <br><br><br><br><br><br><br>
+            <a style = "color: white;" href="">AI语音转文字</a><br><br><br><br><br><br><br>
+            <a style = "color: white;" href="">AI图文成片</a><br><br><br><br><br><br><br>
+        </td>
+        <td align="center" valign="top">
+            <br><br>
+            <input type="text" size="60" id="mydescription"> <input type="button" value="AI图片生成" onclick="generateImg()">
+            <br><br>
+            <img width="520" height="300" id="myimg">
+            <br><br>
+            <input type="button" value="复制图片"/>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
